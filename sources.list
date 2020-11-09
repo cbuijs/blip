@@ -1,0 +1,33 @@
+# Generic allow/blocklists
+LOCAL	0	LIST	allow	IN	/root/blip/local.addr.list
+IGNORE	0	LIST	allow	BOTH	/root/blip/ignore.list
+ALLOWLIST	0	LIST	allow	BOTH	/root/blip/allow.list
+BLOCKLIST	0	LIST	block	BOTH	/root/blip/block.list
+
+# DNS-Over-HTTPS Targets
+DOHBLOCK	0	LIST	block	OUT	/root/blip/doh.block.list
+DOH	86400	URL	block	OUT	https://raw.githubusercontent.com/dibdot/DoH-IP-blocklists/master/doh-ipv4.txt https://raw.githubusercontent.com/dibdot/DoH-IP-blocklists/master/doh-ipv6.txt
+
+# Drop
+SHDrop	43200	URL	block	BOTH	https://www.spamhaus.org/drop/drop.txt https://www.spamhaus.org/drop/dropv6.txt https://www.spamhaus.org/drop/edrop.txt
+
+# BadIPs / Honeypot / Fail2ban / etc
+REPUTATION	43200	URL	block	BOTH	https://reputation.alienvault.com/reputation.generic http://cinsscore.com/list/ci-badguys.txt https://www.binarydefense.com/banlist.txt
+ATTACKS	43200	URL	block	BOTH	https://lists.blocklist.de/lists/ssh.txt https://lists.blocklist.de/lists/bruteforcelogin.txt https://lists.blocklist.de/lists/strongips.txt https://feeds.dshield.org/top10-2.txt https://rules.emergingthreats.net/blockrules/compromised-ips.txt https://rules.emergingthreats.net/fwrules/emerging-Block-IPs.txt https://talosintelligence.com/documents/ip-blacklist
+ABUSE	43200	URL	block	BOTH	https://iplists.firehol.org/files/firehol_abusers_1d.netset https://www.stopforumspam.com/downloads/toxic_ip_cidr.txt 
+
+# ASNs
+ASN	604800	ASN	block	BOTH	112 202425 206349 395082
+
+# Countries
+AFRICA	604800	COUNTRY	block	BOTH	ao bf bi bj bw cd cf cg ci cm cv dj dz eg er et ga gh gm gn gq gw ke km lr ls ly ma mg ml mr mu mw mz na ne ng re rw sc sd sh sl sn so ss st sz td tg tn tz ug yt za zm zw
+ASIA	604800	COUNTRY	block	BOTH	af am az bd bn bt cn ge hk id in jp kg kh kp kr kz la lk mm mn mo mv my np ph pk sg th tj tl tm tw uz vn
+BAD-EUROPE	604800	COUNTRY	block	BOTH	al ad at by cy cz ee gi hr li lv lt mt va
+CENTRAL-AMERICA	604800	COUNTRY	block	BOTH	ao cd cf cg cm ga gq st td
+EAST-EUROPE	604800	COUNTRY	block	BOTH	bg by cz hu md pl ro ru sk ua
+MIDDLE-EAST	604800	COUNTRY	block	BOTH	ae bh cy eg il iq ir jo kw lb om ps qa sa sy tr ye
+## NORTH-America excluding BM,CA,GL,PM,US
+#NORTH-AMERICA	604800	COUNTRY	block	BOTH	ag ai aw bb bl bq bs bz cr cu cw dm do gd gp gt hn ht jm kn ky lc mf mq ms mx ni pa pr sv sx tc tt vc vg vi
+#OCEANIA	604800	COUNTRY	block	BOTH	ck fj fm gu ki mh nc nf nr nu pg pn pw sb tk to tv vu wf ws
+SOUTH-AMERICA	604800	COUNTRY	block	BOTH	br co ar pe ve cl ec bo py uy gy sr gf fk
+
